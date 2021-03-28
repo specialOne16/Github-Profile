@@ -7,7 +7,7 @@ import com.jundapp.githubprofile.fragments.UserListFragment
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun showList(keyword: String){
+    private fun showList(keyword: String){
         val userListFragment = UserListFragment.newInstance("https://api.github.com/search/users?q=${keyword}")
         supportFragmentManager
             .beginTransaction()

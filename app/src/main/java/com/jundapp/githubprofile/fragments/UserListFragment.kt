@@ -84,10 +84,12 @@ class UserListFragment : Fragment() {
 
 
                 try {
-                    var userObject : JSONArray
 
-                    try {userObject = JSONArray(result)}
-                    catch (e: Exception){userObject = JSONObject(result).getJSONArray("items")}
+                    val userObject : JSONArray = try {
+                        JSONArray(result)
+                    } catch (e: Exception){
+                        JSONObject(result).getJSONArray("items")
+                    }
 
                     if (userObject.length() == 0) noData.visibility = View.VISIBLE
 

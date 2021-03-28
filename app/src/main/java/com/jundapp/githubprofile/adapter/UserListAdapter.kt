@@ -22,10 +22,10 @@ class UserListAdapter(private val context: Activity, private val data: JSONArray
 
     class ListViewHolder(rowView: View) : RecyclerView.ViewHolder(rowView) {
 
-        val ivAvatar = rowView.findViewById<CircleImageView>(R.id.ivAvatar)
+        val ivAvatar: CircleImageView = rowView.findViewById(R.id.ivAvatar)
 
-        val tvName = rowView.findViewById<TextView>(R.id.tvName)
-        val tvUName = rowView.findViewById<TextView>(R.id.tvUName)
+        val tvName: TextView = rowView.findViewById(R.id.tvName)
+        val tvUName: TextView = rowView.findViewById(R.id.tvUName)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {

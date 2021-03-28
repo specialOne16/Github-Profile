@@ -8,11 +8,13 @@
 
     <string name="follower">Follower</string>
     <string name="following">Following</string>
-    <string name="repository">Repository</string>
     <string name="search_error">Something went wrong!</string>
 
     <string name="cari_disini">Find here…</string>
-    <string name="desc_search_button">Search button</string>
     <string name="no_entry_found">No entry found.</string>
+
+
+    <string name="desc_search_button" translatable="false">Search button</string>
+    <string name="desc_logo" translatable="false">logo</string>
 
 </resources>

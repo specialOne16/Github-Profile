@@ -9,11 +9,9 @@
 
     <string name="follower">Pengikut</string>
     <string name="following">Mengikuti</string>
-    <string name="repository">Repository</string>
     <string name="search_error">Terjadi Kesalahan!</string>
 
     <string name="cari_disini">Cari disini…</string>
-    <string name="desc_search_button">Tombol search</string>
     <string name="no_entry_found">Tidak ada data.</string>
 
 </resources>

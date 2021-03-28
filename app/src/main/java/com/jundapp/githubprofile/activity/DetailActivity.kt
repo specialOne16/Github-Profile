@@ -42,7 +42,8 @@ class DetailActivity : AppCompatActivity() {
 
     private fun setUpTabLayout(username: String) {
         val detailPagerAdapter = DetailPagerAdapter(this, username)
-        binding.viewPager.adapter = detailPagerAdapter
+        binding.
+        viewPager.adapter = detailPagerAdapter
         TabLayoutMediator(binding.tabs, binding.viewPager){
             tab, position -> tab.text = resources.getString(TAB_TITLES[position])
         }.attach()
