@@ -84,7 +84,7 @@ class UserListFragment : Fragment() {
 
 
                 try {
-                    var userObject = JSONArray()
+                    var userObject : JSONArray
 
                     try {userObject = JSONArray(result)}
                     catch (e: Exception){userObject = JSONObject(result).getJSONArray("items")}
