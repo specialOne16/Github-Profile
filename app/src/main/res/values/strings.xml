@@ -1,105 +1,18 @@
 <resources>
     <string name="app_name">Github Profile</string>
 
-    <string name="name">Jundu</string>
-    <string name="uname">specialOne16</string>
-    <string name="company">Institut Teknologi Bandung</string>
-    <string name="location">Bandung</string>
-
+    <string name="name">No Name</string>
+    <string name="uname">No Username</string>
+    <string name="company">No Company</string>
+    <string name="location">No Location</string>
 
     <string name="follower">Follower</string>
     <string name="following">Following</string>
     <string name="repository">Repository</string>
+    <string name="search_error">Something went wrong!</string>
 
-    <string-array name="username">
-        <item>JakeWharton</item>
-        <item>amitshekhariitbhu</item>
-        <item>romainguy</item>
-        <item>chrisbanes</item>
-        <item>tipsy</item>
-        <item>ravi8x</item>
-        <item>jasoet</item>
-        <item>budioktaviyan</item>
-        <item>hendisantika</item>
-        <item>sidiqpermana</item>
-    </string-array>
-
-    <string-array name="name">
-        <item>Jake Wharton</item>
-        <item>Amit Shekhar</item>
-        <item>Romain Guy</item>
-        <item>Chris Banes</item>
-        <item>David</item>
-        <item>Ravi Tamada</item>
-        <item>Deny Prasetyo</item>
-        <item>Budi Oktaviyan</item>
-        <item>Hendi Santika</item>
-        <item>Sidiq Permana</item>
-    </string-array>
-
-    <string-array name="location">
-        <item>Pittsburgh, PA, USA</item>
-        <item>New Delhi, India</item>
-        <item>California</item>
-        <item>Sydney, Australia</item>
-        <item>Trondheim, Norway</item>
-        <item>India</item>
-        <item>Kotagede, Yogyakarta, Indonesia</item>
-        <item>Jakarta, Indonesia</item>
-        <item>Bojongsoang - Bandung Jawa Barat</item>
-        <item>Jakarta Indonesia</item>
-    </string-array>
-
-    <integer-array name="repository">
-        <item>102</item>
-        <item>37</item>
-        <item>9</item>
-        <item>30</item>
-        <item>56</item>
-        <item>28</item>
-        <item>44</item>
-        <item>110</item>
-        <item>1064</item>
-        <item>65</item>
-    </integer-array>
-
-    <string-array name="company">
-        <item>Google, Inc.</item>
-        <item>MindOrksOpenSource</item>
-        <item>Google</item>
-        <item>Google working on android</item>
-        <item>Working Group Two</item>
-        <item>AndroidHive | Droid5</item>
-        <item>gojek-engineering</item>
-        <item>KotlinID</item>
-        <item>JVMDeveloperID</item>
-        <item>Nusantara Beta Studio</item>
-    </string-array>
-
-    <integer-array name="followers">
-        <item>56995</item>
-        <item>5153</item>
-        <item>7972</item>
-        <item>14725</item>
-        <item>788</item>
-        <item>18628</item>
-        <item>277</item>
-        <item>178</item>
-        <item>428</item>
-        <item>465</item>
-    </integer-array>
-
-    <integer-array name="following">
-        <item>12</item>
-        <item>2</item>
-        <item>0</item>
-        <item>1</item>
-        <item>0</item>
-        <item>3</item>
-        <item>39</item>
-        <item>23</item>
-        <item>61</item>
-        <item>10</item>
-    </integer-array>
+    <string name="cari_disini">Find here…</string>
+    <string name="desc_search_button">Search button</string>
+    <string name="no_entry_found">No entry found.</string>
 
 </resources>

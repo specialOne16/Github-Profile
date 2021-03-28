@@ -1,46 +1,29 @@
 package com.jundapp.githubprofile.activity
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.jundapp.githubprofile.UserData
-import com.jundapp.githubprofile.R
-import com.jundapp.githubprofile.User
-import com.jundapp.githubprofile.adapter.UserListAdapter
+import com.jundapp.githubprofile.databinding.ActivityMainBinding
+import com.jundapp.githubprofile.fragments.UserListFragment
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var listJob: RecyclerView
+    lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        listJob = findViewById(R.id.listJob)
-        listJob.setHasFixedSize(true)
-
-        UserData.init(this)
-
-        loadJobData()
+        binding.btnSearch.setOnClickListener { showList(binding.searchBar.text.toString()) }
 
     }
 
-    private fun loadJobData() {
-
-        listJob.layoutManager = LinearLayoutManager(this)
-        val listJobAdapter = UserListAdapter(this, UserData.listData)
-        listJob.adapter = listJobAdapter
-
-        listJobAdapter.setOnItemClickCallback(object : UserListAdapter.OnItemClickCallback {
-            override fun onItemClicked(data: User) {
-                val toDetail = Intent(this@MainActivity, DetailActivity::class.java)
-                toDetail.putExtra(DetailActivity.EXTRA_USER, data)
-                startActivity(toDetail)
-            }
-        })
-
+    fun showList(keyword: String){
+        val userListFragment = UserListFragment.newInstance("https://api.github.com/search/users?q=${keyword}")
+        supportFragmentManager
+            .beginTransaction()
+            .replace(binding.userListContainer.id, userListFragment)
+            .commit()
     }
 
 }

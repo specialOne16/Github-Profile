@@ -1,111 +1,108 @@
 package com.jundapp.githubprofile.activity
 
-import android.content.Intent
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.core.content.ContextCompat
+import android.widget.Toast
+import androidx.annotation.StringRes
 import com.bumptech.glide.Glide
+import com.google.android.material.tabs.TabLayoutMediator
 import com.jundapp.githubprofile.R
-import com.jundapp.githubprofile.User
-import de.hdodenhof.circleimageview.CircleImageView
+import com.jundapp.githubprofile.adapter.DetailPagerAdapter
+import com.jundapp.githubprofile.databinding.ActivityDetailBinding
+import com.loopj.android.http.AsyncHttpClient
+import com.loopj.android.http.AsyncHttpResponseHandler
+import cz.msebera.android.httpclient.Header
+import org.json.JSONObject
 
-class DetailActivity : AppCompatActivity(), View.OnClickListener {
+class DetailActivity : AppCompatActivity() {
 
     companion object {
         const val EXTRA_USER = "extra_user"
+
+
+        @StringRes
+        private val TAB_TITLES = intArrayOf(
+            R.string.follower,
+            R.string.following
+        )
     }
 
-    var isFav: Boolean = false
-    lateinit var user: User
-
-    lateinit var share: ImageView
-    lateinit var fav: ImageView
-
-    lateinit var ivAvatar: CircleImageView
-    lateinit var tvName: TextView
-    lateinit var tvUName: TextView
-
-    lateinit var tvCompany: TextView
-    lateinit var tvLocation: TextView
-
-    lateinit var tvFollower: TextView
-    lateinit var tvFollowing: TextView
-    lateinit var tvRepository: TextView
+    lateinit var binding : ActivityDetailBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detail)
+        binding = ActivityDetailBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        user = intent.getParcelableExtra<User>(EXTRA_USER) ?: User()
+        val userName = intent.getStringExtra(EXTRA_USER) ?: "specialOne16"
+        getDetailData(userName)
 
-        bindView()
-
-        tvName.text = user.name
-        tvUName.text = user.userName
-
-        tvCompany.text = user.company
-        tvLocation.text = user.location
-
-        tvFollower.text = user.follower.toString()
-        tvFollowing.text = user.following.toString()
-        tvRepository.text = user.repository.toString()
-
-        Glide.with(this)
-            .load(ContextCompat.getDrawable(this, user.avatar))
-            .into(ivAvatar)
-
-        fav.setOnClickListener(this)
-        share.setOnClickListener(this)
-
+        setUpTabLayout(userName)
     }
 
-    private fun bindView() {
-        ivAvatar = findViewById(R.id.ivAvatar)
-        tvName = findViewById(R.id.tvName)
-        tvUName = findViewById(R.id.tvUName)
+    private fun setUpTabLayout(username: String) {
+        val detailPagerAdapter = DetailPagerAdapter(this, username)
+        binding.viewPager.adapter = detailPagerAdapter
+        TabLayoutMediator(binding.tabs, binding.viewPager){
+            tab, position -> tab.text = resources.getString(TAB_TITLES[position])
+        }.attach()
 
-        share = findViewById(R.id.share)
-        fav = findViewById(R.id.favourite)
-
-        tvCompany = findViewById(R.id.tvCompany)
-        tvLocation = findViewById(R.id.tvLocation)
-
-        tvFollower = findViewById(R.id.tvFollower)
-        tvFollowing = findViewById(R.id.tvFollowing)
-        tvRepository = findViewById(R.id.tvRepository)
+        supportActionBar?.elevation = 0f
     }
 
-    fun composeEmail(subject: String, attachment: String?) {
-        val intent = Intent(Intent.ACTION_SENDTO).apply {
-            data = Uri.parse("mailto:")
-            putExtra(Intent.EXTRA_SUBJECT, subject)
-            putExtra(Intent.EXTRA_TEXT, attachment)
-        }
-        if (intent.resolveActivity(packageManager) != null) {
-            startActivity(intent)
-        }
-    }
+    private fun getDetailData(username: String){
+//        binding.progressCircular.visibility = View.VISIBLE
 
-    override fun onClick(v: View?) {
-        when (v?.id) {
-            R.id.favourite -> {
-                if (isFav)
-                    fav.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.star_outline))
-                else
-                    fav.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.star_fill))
-                isFav = !isFav
+        val asyncClient = AsyncHttpClient()
+        asyncClient.addHeader("Authorization", "token 1a2e81eba671dc14aaab24ba3233e2b50ec83da7")
+        asyncClient.addHeader("User-Agent", "request")
+
+        val url = "https://api.github.com/users/${username}"
+        asyncClient.get(url, object : AsyncHttpResponseHandler() {
+            override fun onSuccess(
+                statusCode: Int,
+                headers: Array<out Header>,
+                responseBody: ByteArray
+            ) {
+                val result = String(responseBody)
+
+                try {
+                    val userObject = JSONObject(result)
+
+                    val name = userObject.getString("name")
+                    val uname = userObject.getString("login")
+                    val company = userObject.getString("company")
+                    val location = userObject.getString("location")
+
+                    binding.tvName.text = if(name.equals("null")) resources.getString(R.string.name) else name
+                    binding.tvUName.text = if(uname.equals("null")) resources.getString(R.string.uname) else uname
+
+                    binding.tvCompany.text = if(company.equals("null")) resources.getString(R.string.company) else company
+                    binding.tvLocation.text = if(location.equals("null")) resources.getString(R.string.location) else location
+                    binding.tvHyphen.text = "-"
+
+                    Glide.with(this@DetailActivity)
+                        .load(userObject.getString("avatar_url"))
+                        .into(binding.ivAvatar)
+                } catch (e: Exception) {
+                    Toast.makeText(this@DetailActivity, resources.getString(R.string.search_error), Toast.LENGTH_SHORT).show()
+                    e.printStackTrace()
+                }
+
+//                binding.progressCircular.visibility = View.GONE
             }
-            R.id.share -> {
-                composeEmail(
-                    "View ${user.userName} on github!",
-                    "Name : ${user.name}\nUsername : ${user.userName}\n"
-                )
+
+            override fun onFailure(
+                statusCode: Int,
+                headers: Array<out Header>,
+                responseBody: ByteArray,
+                error: Throwable
+            ) {
+                Toast.makeText(this@DetailActivity, resources.getString(R.string.search_error), Toast.LENGTH_SHORT).show()
+//                binding.progressCircular.visibility = View.GONE
             }
-        }
+
+        })
     }
 
 }

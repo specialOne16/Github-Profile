@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Profil Github</string>
+
+    <string name="name">Tanpa Nama</string>
+    <string name="uname">Tanpa Username</string>
+    <string name="company">Tanpa Perusahaan</string>
+    <string name="location">Tanpa Lokasi</string>
+
+    <string name="follower">Pengikut</string>
+    <string name="following">Mengikuti</string>
+    <string name="repository">Repository</string>
+    <string name="search_error">Terjadi Kesalahan!</string>
+
+    <string name="cari_disini">Cari disini…</string>
+    <string name="desc_search_button">Tombol search</string>
+    <string name="no_entry_found">Tidak ada data.</string>
+
+</resources>
