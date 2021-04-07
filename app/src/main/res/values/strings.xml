@@ -16,6 +16,9 @@
 
     <string name="love">Favorites</string>
 
+    <string name="add_favorites">%1$s added to favorites</string>
+    <string name="failed_add_favorites">Failed to add user</string>
+
 
     <string name="desc_search_button" translatable="false">Search button</string>
     <string name="desc_logo" translatable="false">logo</string>

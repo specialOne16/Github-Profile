@@ -5,6 +5,7 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import com.jundapp.githubprofile.db.DatabaseContract.FavoriteColumns.Companion.TABLE_NAME
+import com.jundapp.githubprofile.db.DatabaseContract.FavoriteColumns.Companion.ID
 import com.jundapp.githubprofile.db.DatabaseContract.FavoriteColumns.Companion._ID
 import java.sql.SQLException
 
@@ -24,11 +25,11 @@ class FavoriteHelper(context: Context) {
         databaseHelper = DatabaseHelper(context)
     }
 
-    fun insert(values: ContentValues): Long{
+    fun insert(values: ContentValues): Long {
         return database.insert(DATABASE_TABLE, null, values)
     }
 
-    fun deleteById(_id: String):Int{
+    fun deleteById(_id: String): Int {
         return database.delete(DATABASE_TABLE, "$_ID = '$_id'", null)
     }
 
@@ -41,6 +42,19 @@ class FavoriteHelper(context: Context) {
             null,
             null,
             "$_ID ASC"
+        )
+    }
+
+    fun queryById(id: String): Cursor {
+        return database.query(
+            DATABASE_TABLE,
+            null,
+            "$ID = ?",
+            arrayOf(id),
+            null,
+            null,
+            null,
+            null
         )
     }
 

@@ -13,9 +13,9 @@ class DatabaseHelper(context: Context) :
         private const val DATABASE_VERSION = 1
         private const val SQL_CREATE_TABLE_FAVORITE = "CREATE TABLE $TABLE_NAME" +
                 " (${FavoriteColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT," +
-                " (${FavoriteColumns.ID} INTEGER NOT NULL," +
-                " ${FavoriteColumns.LOGIN} VARCHAR(255) NOT NULL" +
-                " ${FavoriteColumns.AVATAR_URL} VARCHAR(255)"
+                " ${FavoriteColumns.ID} INTEGER NOT NULL," +
+                " ${FavoriteColumns.LOGIN} VARCHAR(255) NOT NULL," +
+                " ${FavoriteColumns.AVATAR_URL} VARCHAR(255))"
     }
 
     override fun onCreate(db: SQLiteDatabase?) {

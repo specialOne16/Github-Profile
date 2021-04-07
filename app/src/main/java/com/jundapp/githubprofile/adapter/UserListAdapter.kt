@@ -11,7 +11,7 @@ import com.jundapp.githubprofile.R
 import com.jundapp.githubprofile.models.UserModel
 import de.hdodenhof.circleimageview.CircleImageView
 
-class UserListAdapter(private val context: Activity, private val data: List<UserModel>)
+class UserListAdapter(private val context: Activity, var data: ArrayList<UserModel>)
     : RecyclerView.Adapter<UserListAdapter.ListViewHolder>() {
 
     interface OnItemClickCallback {
