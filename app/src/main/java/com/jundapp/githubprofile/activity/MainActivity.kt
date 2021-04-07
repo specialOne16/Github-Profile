@@ -1,7 +1,11 @@
 package com.jundapp.githubprofile.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import com.jundapp.githubprofile.R
 import com.jundapp.githubprofile.databinding.ActivityMainBinding
 import com.jundapp.githubprofile.fragments.UserListFragment
 
@@ -24,6 +28,22 @@ class MainActivity : AppCompatActivity() {
             .beginTransaction()
             .replace(binding.userListContainer.id, userListFragment)
             .commit()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId){
+            R.id.love -> {
+                val i = Intent(this, FavoriteActivity::class.java)
+                startActivity(i)
+                return true
+            }
+            else -> return true
+        }
     }
 
 }

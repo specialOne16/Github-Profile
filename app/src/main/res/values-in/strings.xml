@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Profil Github</string>
+    <string name="favorite_title">Favorit Anda</string>
 
     <string name="name">Tanpa Nama</string>
     <string name="uname">Tanpa Username</string>
@@ -10,6 +11,8 @@
     <string name="follower">Pengikut</string>
     <string name="following">Mengikuti</string>
     <string name="search_error">Terjadi Kesalahan!</string>
+
+    <string name="love">Favorit</string>
 
     <string name="cari_disini">Cari disini…</string>
     <string name="no_entry_found">Tidak ada data.</string>
