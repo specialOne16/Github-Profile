@@ -1,6 +1,5 @@
 package com.jundapp.githubprofile.activity
 
-import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,7 +8,6 @@ import com.jundapp.githubprofile.R
 import com.jundapp.githubprofile.adapter.UserListAdapter
 import com.jundapp.githubprofile.databinding.ActivityFavoriteBinding
 import com.jundapp.githubprofile.models.UserModel
-import org.json.JSONArray
 
 class FavoriteActivity : AppCompatActivity() {
 
@@ -23,7 +21,7 @@ class FavoriteActivity : AppCompatActivity() {
         supportActionBar?.title = resources.getString(R.string.favorite_title)
 
         val listUserAdapter = UserListAdapter(this, listOf(
-            UserModel("specialOne16", 1, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null)
+            UserModel("specialOne16", 1, null)
         ))
         binding.listFavorite.layoutManager = LinearLayoutManager(this)
 

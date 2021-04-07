@@ -15,23 +15,7 @@ class DatabaseHelper(context: Context) :
                 " (${FavoriteColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT," +
                 " (${FavoriteColumns.ID} INTEGER NOT NULL," +
                 " ${FavoriteColumns.LOGIN} VARCHAR(255) NOT NULL" +
-                " ${FavoriteColumns.NODE_ID} VARCHAR(255)" +
-                " ${FavoriteColumns.AVATAR_URL} VARCHAR(255)" +
-                " ${FavoriteColumns.GRAVATAR_ID} VARCHAR(255)" +
-                " ${FavoriteColumns.URL} VARCHAR(255)" +
-                " ${FavoriteColumns.HTML_URL} VARCHAR(255)" +
-                " ${FavoriteColumns.FOLLOWERS_URL} VARCHAR(255)" +
-                " ${FavoriteColumns.FOLLOWING_URL} VARCHAR(255)" +
-                " ${FavoriteColumns.GISTS_URL} VARCHAR(255)" +
-                " ${FavoriteColumns.STARRED_URL} VARCHAR(255)" +
-                " ${FavoriteColumns.SUBSCRIPTION_URL} VARCHAR(255)" +
-                " ${FavoriteColumns.ORGANIZATION_URL} VARCHAR(255)" +
-                " ${FavoriteColumns.REPOS_URL} VARCHAR(255)" +
-                " ${FavoriteColumns.EVENTS_URL} VARCHAR(255)" +
-                " ${FavoriteColumns.RECEIVED_EVENTS_URL} VARCHAR(255)" +
-                " ${FavoriteColumns.TYPE} VARCHAR(255)" +
-                " ${FavoriteColumns.SITE_ADMIN} VARCHAR(255)" +
-                " ${FavoriteColumns.SCORE} FLOAT(24)"
+                " ${FavoriteColumns.AVATAR_URL} VARCHAR(255)"
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
