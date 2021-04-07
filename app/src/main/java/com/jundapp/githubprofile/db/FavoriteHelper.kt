@@ -30,7 +30,7 @@ class FavoriteHelper(context: Context) {
     }
 
     fun deleteById(_id: String): Int {
-        return database.delete(DATABASE_TABLE, "$_ID = '$_id'", null)
+        return database.delete(DATABASE_TABLE, "$ID = '$_id'", null)
     }
 
     fun queryAll(): Cursor {

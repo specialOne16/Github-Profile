@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jundapp.githubprofile.R
 import com.jundapp.githubprofile.adapter.UserListAdapter
@@ -41,6 +42,7 @@ class FavoriteActivity : AppCompatActivity() {
                     DetailActivity::class.java
                 )
                 toDetail.putExtra(DetailActivity.EXTRA_USER, data.login)
+                toDetail.putExtra(DetailActivity.EXTRA_USER_ID, data.id)
                 startActivity(toDetail)
             }
         })
@@ -51,23 +53,22 @@ class FavoriteActivity : AppCompatActivity() {
 
     private fun loadFavoritesAsync() {
         GlobalScope.launch(Dispatchers.Main) {
-//            binding.progressbar.visibility = View.VISIBLE
             val favHelper = FavoriteHelper.getInstance(applicationContext)
             favHelper.open()
             val deferredFavorites = async(Dispatchers.IO) {
                 val cursor = favHelper.queryAll()
                 MappingHelper.mapCursorToArrayList(cursor)
             }
-//            binding.progressbar.visibility = View.INVISIBLE
             val favorites = deferredFavorites.await()
-            Log.d("favorites size", favorites.size.toString())
             if (favorites.size > 0) {
                 listUserAdapter.data.clear()
                 listUserAdapter.data.addAll(favorites)
                 listUserAdapter.notifyDataSetChanged()
+                binding.noData.visibility = View.GONE
             } else {
-                listUserAdapter.data = ArrayList()
-//                showSnackbarMessage("Tidak ada data saat ini")
+                listUserAdapter.data.clear()
+                listUserAdapter.notifyDataSetChanged()
+                binding.noData.visibility = View.VISIBLE
             }
         }
     }

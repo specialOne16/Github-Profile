@@ -115,6 +115,7 @@ class UserListFragment : Fragment() {
                                 DetailActivity::class.java
                             )
                             toDetail.putExtra(DetailActivity.EXTRA_USER, data.login)
+                            toDetail.putExtra(DetailActivity.EXTRA_USER_ID, data.id)
                             startActivity(toDetail)
                         }
                     })

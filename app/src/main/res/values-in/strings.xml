@@ -16,9 +16,12 @@
 
     <string name="cari_disini">Cari disini…</string>
     <string name="no_entry_found">Tidak ada data.</string>
-    <string name="add_to_favorites">Tambahkan Ke Favorit</string>
+    <string name="favorites">Tambahkan Ke Favorit</string>
 
     <string name="add_favorites">%1$s ditambahkan ke favorit</string>
     <string name="failed_add_favorites">Gagal menambahkan user</string>
+
+    <string name="remove_favorites">%1$s dihapus dari favorit</string>
+    <string name="failed_remove_favorites">Gagal menghapus user</string>
 
 </resources>
