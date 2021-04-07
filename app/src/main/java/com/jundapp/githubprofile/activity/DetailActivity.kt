@@ -38,6 +38,10 @@ class DetailActivity : AppCompatActivity() {
         getDetailData(userName)
 
         setUpTabLayout(userName)
+
+        binding.fabFavorite.setOnClickListener {
+            // TODO insert to database
+        }
     }
 
     private fun setUpTabLayout(username: String) {
@@ -52,7 +56,6 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun getDetailData(username: String){
-//        binding.progressCircular.visibility = View.VISIBLE
 
         val asyncClient = AsyncHttpClient()
         asyncClient.addHeader("Authorization", "token 1a2e81eba671dc14aaab24ba3233e2b50ec83da7")
@@ -90,7 +93,6 @@ class DetailActivity : AppCompatActivity() {
                     e.printStackTrace()
                 }
 
-//                binding.progressCircular.visibility = View.GONE
             }
 
             override fun onFailure(
@@ -100,7 +102,6 @@ class DetailActivity : AppCompatActivity() {
                 error: Throwable
             ) {
                 Toast.makeText(this@DetailActivity, resources.getString(R.string.search_error), Toast.LENGTH_SHORT).show()
-//                binding.progressCircular.visibility = View.GONE
             }
 
         })

@@ -16,5 +16,6 @@
 
     <string name="cari_disini">Cari disini…</string>
     <string name="no_entry_found">Tidak ada data.</string>
+    <string name="add_to_favorites">Tambahkan Ke Favorit</string>
 
 </resources>
