@@ -4,18 +4,20 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.Gson
 import com.jundapp.githubprofile.R
 import com.jundapp.githubprofile.activity.DetailActivity
 import com.jundapp.githubprofile.adapter.UserListAdapter
+import com.jundapp.githubprofile.models.UserModel
 import com.loopj.android.http.AsyncHttpClient
 import com.loopj.android.http.AsyncHttpResponseHandler
 import cz.msebera.android.httpclient.Header
@@ -65,7 +67,7 @@ class UserListFragment : Fragment() {
         url?.let { getUserList(it) }
     }
 
-    private fun getUserList(url: String){
+    private fun getUserList(url: String) {
         progress.visibility = View.VISIBLE
 
         val asyncClient = AsyncHttpClient()
@@ -81,30 +83,47 @@ class UserListFragment : Fragment() {
                 progress.visibility = View.GONE
 
                 val result = String(responseBody)
-
-
                 try {
-
-                    val userObject : JSONArray = try {
+                    val userObject: JSONArray = try {
                         JSONArray(result)
-                    } catch (e: Exception){
+                    } catch (e: Exception) {
                         JSONObject(result).getJSONArray("items")
                     }
 
-                    if (userObject.length() == 0) noData.visibility = View.VISIBLE
+                    val gson = Gson()
+                    val listDataUser = ArrayList<UserModel>()
 
-                    val listUserAdapter = UserListAdapter(context as Activity, userObject)
+                    for (i in 0 until userObject.length()) {
+                        listDataUser.add(
+                            gson.fromJson(
+                                userObject.getJSONObject(i).toString(),
+                                UserModel::class.java
+                            )
+                        )
+                    }
+
+                    if (listDataUser.size == 0) noData.visibility = View.VISIBLE
+
+                    val listUserAdapter = UserListAdapter(context as Activity, listDataUser)
                     listUser.adapter = listUserAdapter
 
-                    listUserAdapter.setOnItemClickCallback(object : UserListAdapter.OnItemClickCallback {
-                        override fun onItemClicked(data: JSONObject) {
-                            val toDetail = Intent(context as Activity, DetailActivity::class.java)
-                            toDetail.putExtra(DetailActivity.EXTRA_USER, data.getString("login"))
+                    listUserAdapter.setOnItemClickCallback(object :
+                        UserListAdapter.OnItemClickCallback {
+                        override fun onItemClicked(data: UserModel) {
+                            val toDetail = Intent(
+                                context as Activity,
+                                DetailActivity::class.java
+                            )
+                            toDetail.putExtra(DetailActivity.EXTRA_USER, data.login)
                             startActivity(toDetail)
                         }
                     })
                 } catch (e: Exception) {
-                    Toast.makeText(context, resources.getString(R.string.search_error), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        context,
+                        resources.getString(R.string.search_error),
+                        Toast.LENGTH_SHORT
+                    ).show()
                     e.printStackTrace()
                     Log.d("follower", e.toString())
                 }
@@ -117,7 +136,11 @@ class UserListFragment : Fragment() {
                 error: Throwable
             ) {
                 progress.visibility = View.GONE
-                Toast.makeText(context, resources.getString(R.string.search_error), Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    context,
+                    resources.getString(R.string.search_error),
+                    Toast.LENGTH_SHORT
+                ).show()
             }
 
         })

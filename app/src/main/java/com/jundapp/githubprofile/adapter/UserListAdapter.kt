@@ -8,16 +8,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.jundapp.githubprofile.R
+import com.jundapp.githubprofile.models.UserModel
 import de.hdodenhof.circleimageview.CircleImageView
-import org.json.JSONArray
-import org.json.JSONObject
 
-
-class UserListAdapter(private val context: Activity, private val data: JSONArray)
+class UserListAdapter(private val context: Activity, private val data: List<UserModel>)
     : RecyclerView.Adapter<UserListAdapter.ListViewHolder>() {
 
     interface OnItemClickCallback {
-        fun onItemClicked(data: JSONObject)
+        fun onItemClicked(data: UserModel)
     }
 
     class ListViewHolder(rowView: View) : RecyclerView.ViewHolder(rowView) {
@@ -35,20 +33,20 @@ class UserListAdapter(private val context: Activity, private val data: JSONArray
     }
 
     override fun getItemCount(): Int {
-        return data.length()
+        return data.size
     }
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
-        val thisData = data.getJSONObject(position)
+        val thisData = data.get(position)
 
-        holder.tvName.text = thisData.getString("login")
-        holder.tvUName.text = thisData.getString("login")
+        holder.tvName.text = thisData.login
+        holder.tvUName.text = thisData.login
 
         Glide.with(context)
-            .load(thisData.getString("avatar_url"))
+            .load(thisData.avatar_url)
             .into(holder.ivAvatar)
 
-        holder.itemView.setOnClickListener { onItemClickCallback.onItemClicked(data.getJSONObject(holder.adapterPosition)) }
+        holder.itemView.setOnClickListener { onItemClickCallback.onItemClicked(data.get(holder.adapterPosition)) }
     }
 
     private lateinit var onItemClickCallback: OnItemClickCallback
