@@ -42,6 +42,11 @@ class MainActivity : AppCompatActivity() {
                 startActivity(i)
                 return true
             }
+            R.id.setting -> {
+                val i = Intent(this, SettingActivity::class.java)
+                startActivity(i)
+                return true
+            }
             else -> return true
         }
     }

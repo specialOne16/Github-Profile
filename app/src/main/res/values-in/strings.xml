@@ -13,6 +13,7 @@
     <string name="search_error">Terjadi Kesalahan!</string>
 
     <string name="love">Favorit</string>
+    <string name="setting">Pengaturan</string>
 
     <string name="cari_disini">Cari disini…</string>
     <string name="no_entry_found">Tidak ada data.</string>
@@ -23,5 +24,7 @@
 
     <string name="remove_favorites">%1$s dihapus dari favorit</string>
     <string name="failed_remove_favorites">Gagal menghapus user</string>
+    <string name="turn_on_off_alarm">Nyalakan/Matikan Alarm</string>
 
+    <string name="notif_message">Temukan orang hebat di Github!</string>
 </resources>
