@@ -25,7 +25,7 @@ class FavoriteHelper(context: Context) {
         databaseHelper = DatabaseHelper(context)
     }
 
-    fun insert(values: ContentValues): Long {
+    fun insert(values: ContentValues?): Long {
         return database.insert(DATABASE_TABLE, null, values)
     }
 

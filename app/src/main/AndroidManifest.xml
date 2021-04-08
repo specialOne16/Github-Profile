@@ -6,6 +6,8 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.VIBRATE" />
 
+    <permission android:name="com.jundapp.githubprofile.READ_DATABASE" android:protectionLevel="normal"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -29,6 +31,13 @@
 
         <receiver
             android:name=".AlarmReceiver"
+            android:enabled="true"
+            android:exported="true" />
+
+        <provider
+            android:name=".provider.FavoriteListProvider"
+            android:authorities="com.jundapp.githubprofile"
+            android:readPermission="com.jundapp.githubprofile.READ_DATABASE"
             android:enabled="true"
             android:exported="true" />
     </application>
