@@ -44,6 +44,8 @@ class UserListAdapter(private val context: Activity, var data: ArrayList<UserMod
 
         Glide.with(context)
             .load(thisData.avatar_url)
+            .placeholder(R.drawable.ic_avatar)
+            .error(R.drawable.ic_avatar)
             .into(holder.ivAvatar)
 
         holder.itemView.setOnClickListener { onItemClickCallback.onItemClicked(data[holder.adapterPosition]) }

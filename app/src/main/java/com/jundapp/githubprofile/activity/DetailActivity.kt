@@ -187,6 +187,8 @@ class DetailActivity : AppCompatActivity() {
 
                     Glide.with(this@DetailActivity)
                         .load(userObject.getString("avatar_url"))
+                        .placeholder(R.drawable.ic_avatar)
+                        .error(R.drawable.ic_avatar)
                         .into(binding.ivAvatar)
                 } catch (e: Exception) {
                     Toast.makeText(
