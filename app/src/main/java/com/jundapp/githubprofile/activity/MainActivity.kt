@@ -1,10 +1,10 @@
 package com.jundapp.githubprofile.activity
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import com.jundapp.githubprofile.R
 import com.jundapp.githubprofile.databinding.ActivityMainBinding
 import com.jundapp.githubprofile.fragments.UserListFragment
@@ -36,18 +36,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId){
+        return when (item.itemId){
             R.id.love -> {
                 val i = Intent(this, FavoriteActivity::class.java)
                 startActivity(i)
-                return true
+                true
             }
             R.id.setting -> {
                 val i = Intent(this, SettingActivity::class.java)
                 startActivity(i)
-                return true
+                true
             }
-            else -> return true
+            else -> true
         }
     }
 

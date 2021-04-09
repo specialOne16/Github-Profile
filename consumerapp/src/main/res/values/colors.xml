@@ -8,9 +8,5 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="colorPrimary">#66CAFF</color>
-    <color name="colorPrimaryDark">#478DB2</color>
-
     <color name="black_transpaent">#9000</color>
-    <color name="transpaent">#0000</color>
 </resources>

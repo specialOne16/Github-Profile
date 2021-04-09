@@ -37,7 +37,7 @@ class UserListAdapter(private val context: Activity, var data: ArrayList<UserMod
     }
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
-        val thisData = data.get(position)
+        val thisData = data[position]
 
         holder.tvName.text = thisData.login
         holder.tvUName.text = thisData.login
@@ -46,7 +46,7 @@ class UserListAdapter(private val context: Activity, var data: ArrayList<UserMod
             .load(thisData.avatar_url)
             .into(holder.ivAvatar)
 
-        holder.itemView.setOnClickListener { onItemClickCallback.onItemClicked(data.get(holder.adapterPosition)) }
+        holder.itemView.setOnClickListener { onItemClickCallback.onItemClicked(data[holder.adapterPosition]) }
     }
 
     private lateinit var onItemClickCallback: OnItemClickCallback

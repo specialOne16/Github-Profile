@@ -1,11 +1,11 @@
 package com.jundapp.githubprofile.activity
 
 import android.content.ContentValues
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.annotation.StringRes
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
@@ -40,7 +40,7 @@ class DetailActivity : AppCompatActivity() {
         )
     }
 
-    private lateinit var binding : ActivityDetailBinding
+    private lateinit var binding: ActivityDetailBinding
     private lateinit var favoriteHelper: FavoriteHelper
     private var userModel: UserModel? = null
     private var isFavorite = false
@@ -63,16 +63,21 @@ class DetailActivity : AppCompatActivity() {
         setUpTabLayout(userName)
 
         binding.fabFavorite.setOnClickListener {
-            if(isFavorite) {
+            if (isFavorite) {
                 val result = favoriteHelper.deleteById(userID.toString())
                 if (result > 0) {
                     Snackbar.make(
                         binding.root,
-                        resources.getString(R.string.remove_favorites, userModel?.login),
+                        resources.getString(R.string.remove_favorites, userModel?.login ?: ""),
                         Snackbar.LENGTH_SHORT
                     ).show()
                     isFavorite = false
-                    binding.fabFavorite.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_favorite))
+                    binding.fabFavorite.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            this,
+                            R.drawable.ic_favorite
+                        )
+                    )
                 } else {
                     Snackbar.make(
                         binding.root,
@@ -80,7 +85,7 @@ class DetailActivity : AppCompatActivity() {
                         Snackbar.LENGTH_SHORT
                     ).show()
                 }
-            }else{
+            } else {
                 val values = ContentValues()
                 values.put(DatabaseContract.FavoriteColumns.LOGIN, userModel?.login)
                 values.put(DatabaseContract.FavoriteColumns.ID, userModel?.id)
@@ -90,11 +95,16 @@ class DetailActivity : AppCompatActivity() {
                 if (result > 0) {
                     Snackbar.make(
                         binding.root,
-                        resources.getString(R.string.add_favorites, userModel?.login),
+                        resources.getString(R.string.add_favorites, userModel?.login ?: ""),
                         Snackbar.LENGTH_SHORT
                     ).show()
                     isFavorite = true
-                    binding.fabFavorite.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_un_favorite))
+                    binding.fabFavorite.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            this,
+                            R.drawable.ic_un_favorite
+                        )
+                    )
                 } else {
                     Snackbar.make(
                         binding.root,
@@ -118,23 +128,27 @@ class DetailActivity : AppCompatActivity() {
             Log.d("favorites size", favorites.size.toString())
             if (favorites.size > 0) {
                 isFavorite = true
-                binding.fabFavorite.setImageDrawable(ContextCompat.getDrawable(this@DetailActivity, R.drawable.ic_un_favorite))
+                binding.fabFavorite.setImageDrawable(
+                    ContextCompat.getDrawable(
+                        this@DetailActivity,
+                        R.drawable.ic_un_favorite
+                    )
+                )
             }
         }
     }
 
     private fun setUpTabLayout(username: String) {
         val detailPagerAdapter = DetailPagerAdapter(this, username)
-        binding.
-        viewPager.adapter = detailPagerAdapter
-        TabLayoutMediator(binding.tabs, binding.viewPager){
-            tab, position -> tab.text = resources.getString(TAB_TITLES[position])
+        binding.viewPager.adapter = detailPagerAdapter
+        TabLayoutMediator(binding.tabs, binding.viewPager) { tab, position ->
+            tab.text = resources.getString(TAB_TITLES[position])
         }.attach()
 
         supportActionBar?.elevation = 0f
     }
 
-    private fun getDetailData(username: String){
+    private fun getDetailData(username: String) {
 
         val asyncClient = AsyncHttpClient()
         asyncClient.addHeader("Authorization", "token 1a2e81eba671dc14aaab24ba3233e2b50ec83da7")
@@ -159,18 +173,26 @@ class DetailActivity : AppCompatActivity() {
                     val company = userObject.getString("company")
                     val location = userObject.getString("location")
 
-                    binding.tvName.text = if(name.equals("null")) resources.getString(R.string.name) else name
-                    binding.tvUName.text = if(uname.equals("null")) resources.getString(R.string.uname) else uname
+                    binding.tvName.text =
+                        if (name.equals("null")) resources.getString(R.string.name) else name
+                    binding.tvUName.text =
+                        if (uname.equals("null")) resources.getString(R.string.uname) else uname
 
-                    binding.tvCompany.text = if(company.equals("null")) resources.getString(R.string.company) else company
-                    binding.tvLocation.text = if(location.equals("null")) resources.getString(R.string.location) else location
+                    binding.tvCompany.text =
+                        if (company.equals("null")) resources.getString(R.string.company) else company
+                    binding.tvLocation.text =
+                        if (location.equals("null")) resources.getString(R.string.location) else location
                     binding.tvHyphen.text = "-"
 
                     Glide.with(this@DetailActivity)
                         .load(userObject.getString("avatar_url"))
                         .into(binding.ivAvatar)
                 } catch (e: Exception) {
-                    Toast.makeText(this@DetailActivity, resources.getString(R.string.search_error), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this@DetailActivity,
+                        resources.getString(R.string.search_error),
+                        Toast.LENGTH_SHORT
+                    ).show()
                     e.printStackTrace()
                 }
 
@@ -182,7 +204,11 @@ class DetailActivity : AppCompatActivity() {
                 responseBody: ByteArray,
                 error: Throwable
             ) {
-                Toast.makeText(this@DetailActivity, resources.getString(R.string.search_error), Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this@DetailActivity,
+                    resources.getString(R.string.search_error),
+                    Toast.LENGTH_SHORT
+                ).show()
             }
 
         })

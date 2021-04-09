@@ -1,12 +1,10 @@
 package com.jundapp.githubprofile.db
 
-import android.net.Uri
 import android.provider.BaseColumns
 
 object DatabaseContract {
 
-    val AUTHORITY = "com.jundapp.githubprofile"
-    val SCHEME = "content"
+    const val AUTHORITY = "com.jundapp.githubprofile"
 
     class FavoriteColumns : BaseColumns {
         companion object {
@@ -15,9 +13,6 @@ object DatabaseContract {
             const val LOGIN = "login"
             const val ID = "id" // ID DATABASE GITHUB
             const val AVATAR_URL = "avatar_url"
-
-            val CONTENT_URI: Uri =
-                Uri.Builder().scheme(SCHEME).authority(AUTHORITY).appendPath(TABLE_NAME).build()
         }
     }
 }

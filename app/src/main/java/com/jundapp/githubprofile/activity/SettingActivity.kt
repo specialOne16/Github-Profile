@@ -1,10 +1,10 @@
 package com.jundapp.githubprofile.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.jundapp.githubprofile.AlarmReceiver
-import com.jundapp.githubprofile.SharedPreferencesManager
+import androidx.appcompat.app.AppCompatActivity
 import com.jundapp.githubprofile.databinding.ActivitySettingBinding
+import com.jundapp.githubprofile.helper.SharedPreferencesManager
+import com.jundapp.githubprofile.services.AlarmReceiver
 
 class SettingActivity : AppCompatActivity() {
 
@@ -21,7 +21,7 @@ class SettingActivity : AppCompatActivity() {
         val sharedPrefManager = SharedPreferencesManager(this)
         binding.alarmSwitch.isChecked = sharedPrefManager.getReminder() ?: false
 
-        binding.alarmSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
+        binding.alarmSwitch.setOnCheckedChangeListener { _, isChecked ->
             if(isChecked){
                 sharedPrefManager.setReminder(true)
                 alarmReceiver.setReminderAt9AM(this)

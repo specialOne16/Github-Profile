@@ -11,8 +11,8 @@ object MappingHelper {
             while (moveToNext()) {
                 val login = getString(getColumnIndexOrThrow(DatabaseContract.FavoriteColumns.LOGIN))
                 val id = getInt(getColumnIndexOrThrow(DatabaseContract.FavoriteColumns.ID))
-                val avatar_url = getString(getColumnIndexOrThrow(DatabaseContract.FavoriteColumns.AVATAR_URL))
-                notesList.add(UserModel(login, id, avatar_url))
+                val avatarUrl = getString(getColumnIndexOrThrow(DatabaseContract.FavoriteColumns.AVATAR_URL))
+                notesList.add(UserModel(login, id, avatarUrl))
             }
         }
         return notesList

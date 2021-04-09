@@ -33,7 +33,7 @@ class UserListAdapter(private val context: Activity, var data: ArrayList<UserMod
     }
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
-        val thisData = data.get(position)
+        val thisData = data[position]
 
         holder.tvName.text = thisData.login
         holder.tvUName.text = thisData.login

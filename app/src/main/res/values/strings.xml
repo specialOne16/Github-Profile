@@ -20,7 +20,7 @@
     <string name="add_favorites">%1$s Added to favorites</string>
     <string name="failed_add_favorites">Failed to add user</string>
 
-    <string name="remove_favorites">%1$s removed favorites</string>
+    <string name="remove_favorites">%1$s removed from favorites</string>
     <string name="failed_remove_favorites">Failed to remove user</string>
 
 

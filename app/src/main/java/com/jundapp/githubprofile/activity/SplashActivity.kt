@@ -3,8 +3,8 @@ package com.jundapp.githubprofile.activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.jundapp.githubprofile.AlarmReceiver
-import com.jundapp.githubprofile.SharedPreferencesManager
+import com.jundapp.githubprofile.services.AlarmReceiver
+import com.jundapp.githubprofile.helper.SharedPreferencesManager
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,10 +1,9 @@
 package com.jundapp.githubprofile.activity
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jundapp.githubprofile.R
 import com.jundapp.githubprofile.adapter.UserListAdapter
@@ -22,14 +21,15 @@ class FavoriteActivity : AppCompatActivity() {
     private lateinit var binding: ActivityFavoriteBinding
     private lateinit var listUserAdapter: UserListAdapter
 
+    private lateinit var favHelper: FavoriteHelper
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityFavoriteBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        favHelper = FavoriteHelper.getInstance(applicationContext)
         supportActionBar?.title = resources.getString(R.string.favorite_title)
-
-        loadFavoritesAsync()
 
         listUserAdapter = UserListAdapter(this, arrayListOf())
         binding.listFavorite.layoutManager = LinearLayoutManager(this)
@@ -53,7 +53,6 @@ class FavoriteActivity : AppCompatActivity() {
 
     private fun loadFavoritesAsync() {
         GlobalScope.launch(Dispatchers.Main) {
-            val favHelper = FavoriteHelper.getInstance(applicationContext)
             favHelper.open()
             val deferredFavorites = async(Dispatchers.IO) {
                 val cursor = favHelper.queryAll()
@@ -71,6 +70,11 @@ class FavoriteActivity : AppCompatActivity() {
                 binding.noData.visibility = View.VISIBLE
             }
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        favHelper.close()
     }
 
     override fun onResume() {

@@ -6,9 +6,7 @@ import android.content.Context
 import android.content.UriMatcher
 import android.database.Cursor
 import android.net.Uri
-import android.widget.Toast
 import com.jundapp.githubprofile.db.DatabaseContract.AUTHORITY
-import com.jundapp.githubprofile.db.DatabaseContract.FavoriteColumns.Companion.CONTENT_URI
 import com.jundapp.githubprofile.db.DatabaseContract.FavoriteColumns.Companion.TABLE_NAME
 import com.jundapp.githubprofile.db.FavoriteHelper
 

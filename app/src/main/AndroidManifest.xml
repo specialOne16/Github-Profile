@@ -30,7 +30,7 @@
         </activity>
 
         <receiver
-            android:name=".AlarmReceiver"
+            android:name=".services.AlarmReceiver"
             android:enabled="true"
             android:exported="true" />
 

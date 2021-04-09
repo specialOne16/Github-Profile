@@ -1,4 +1,4 @@
-package com.jundapp.githubprofile
+package com.jundapp.githubprofile.services
 
 import android.app.AlarmManager
 import android.app.NotificationChannel
@@ -9,20 +9,22 @@ import android.content.Context
 import android.content.Intent
 import android.media.RingtoneManager
 import android.os.Build
-import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
+import com.jundapp.githubprofile.R
 import java.util.*
 
 class AlarmReceiver : BroadcastReceiver() {
 
-    val CHANNEL_ID = "channel_1"
-    val CHANNEL_NAME = "channel_reminder"
+    companion object {
+        const val CHANNEL_ID = "channel_1"
+        const val CHANNEL_NAME = "channel_reminder"
 
-    val EXTRA_TITLE = "title"
-    val EXTRA_MESSAGE = "message"
+        const val EXTRA_TITLE = "title"
+        const val EXTRA_MESSAGE = "message"
 
-    val ID_REMINDER_9AM = 100
+        const val ID_REMINDER_9AM = 100
+    }
 
     override fun onReceive(context: Context, intent: Intent) {
         val title = intent.getStringExtra(EXTRA_TITLE)
@@ -93,5 +95,6 @@ class AlarmReceiver : BroadcastReceiver() {
         val notification = builder.build()
         notificationManagerCompat.notify(notifId, notification)
     }
+
 
 }

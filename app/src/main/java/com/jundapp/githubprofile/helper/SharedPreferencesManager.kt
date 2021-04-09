@@ -1,4 +1,4 @@
-package com.jundapp.githubprofile
+package com.jundapp.githubprofile.helper
 
 import android.content.Context
 
