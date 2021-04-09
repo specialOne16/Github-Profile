@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Profil Github</string>
+    <string name="favorite_title">Favorit Anda</string>
+
+    <string name="name">Tanpa Nama</string>
+    <string name="uname">Tanpa Username</string>
+    <string name="company">Tanpa Perusahaan</string>
+    <string name="location">Tanpa Lokasi</string>
+
+    <string name="follower">Pengikut</string>
+    <string name="following">Mengikuti</string>
+    <string name="search_error">Terjadi Kesalahan!</string>
+
+    <string name="love">Favorit</string>
+    <string name="setting">Pengaturan</string>
+
+    <string name="cari_disini">Cari disini…</string>
+    <string name="no_entry_found">Tidak ada data.</string>
+    <string name="favorites">Tambahkan Ke Favorit</string>
+
+    <string name="add_favorites">%1$s ditambahkan ke favorit</string>
+    <string name="failed_add_favorites">Gagal menambahkan user</string>
+
+    <string name="remove_favorites">%1$s dihapus dari favorit</string>
+    <string name="failed_remove_favorites">Gagal menghapus user</string>
+    <string name="turn_on_off_alarm">Nyalakan/Matikan Alarm</string>
+
+    <string name="notif_message">Temukan orang hebat di Github!</string>
+</resources>

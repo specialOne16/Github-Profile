@@ -1,3 +1,34 @@
 <resources>
     <string name="app_name">Github Favorites</string>
+    <string name="favorite_title">Your Favorites</string>
+
+    <string name="name">No Name</string>
+    <string name="uname">No Username</string>
+    <string name="company">No Company</string>
+    <string name="location">No Location</string>
+
+    <string name="follower">Follower</string>
+    <string name="following">Following</string>
+    <string name="search_error">Something went wrong!</string>
+
+    <string name="cari_disini">Find here…</string>
+    <string name="no_entry_found">No entry found.</string>
+
+    <string name="love">Favorites</string>
+    <string name="setting">Settings</string>
+
+    <string name="add_favorites">%1$s Added to favorites</string>
+    <string name="failed_add_favorites">Failed to add user</string>
+
+    <string name="remove_favorites">%1$s removed favorites</string>
+    <string name="failed_remove_favorites">Failed to remove user</string>
+
+
+    <string name="desc_search_button" translatable="false">Search button</string>
+    <string name="desc_logo" translatable="false">logo</string>
+    <string name="favorites">Add To Favorites</string>
+    <string name="turn_on_off_alarm">Turn On/Off Alarm</string>
+
+    <string name="notif_message">Let\'s find amazing person in github!</string>
+
 </resources>
