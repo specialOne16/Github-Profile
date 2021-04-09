@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
+import com.jundapp.githubprofile.BuildConfig
 import com.jundapp.githubprofile.R
 import com.jundapp.githubprofile.activity.DetailActivity
 import com.jundapp.githubprofile.adapter.UserListAdapter
@@ -71,7 +72,7 @@ class UserListFragment : Fragment() {
         progress.visibility = View.VISIBLE
 
         val asyncClient = AsyncHttpClient()
-        asyncClient.addHeader("Authorization", "token 1a2e81eba671dc14aaab24ba3233e2b50ec83da7")
+        asyncClient.addHeader("Authorization", "token ${BuildConfig.GITHUB_API_KEY}")
         asyncClient.addHeader("User-Agent", "request")
 
         asyncClient.get(url, object : AsyncHttpResponseHandler() {

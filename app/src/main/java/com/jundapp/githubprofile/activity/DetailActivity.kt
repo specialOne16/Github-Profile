@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.gson.Gson
+import com.jundapp.githubprofile.BuildConfig
 import com.jundapp.githubprofile.R
 import com.jundapp.githubprofile.adapter.DetailPagerAdapter
 import com.jundapp.githubprofile.databinding.ActivityDetailBinding
@@ -151,7 +152,7 @@ class DetailActivity : AppCompatActivity() {
     private fun getDetailData(username: String) {
 
         val asyncClient = AsyncHttpClient()
-        asyncClient.addHeader("Authorization", "token 1a2e81eba671dc14aaab24ba3233e2b50ec83da7")
+        asyncClient.addHeader("Authorization", "token ${BuildConfig.GITHUB_API_KEY}")
         asyncClient.addHeader("User-Agent", "request")
 
         val url = "https://api.github.com/users/${username}"
