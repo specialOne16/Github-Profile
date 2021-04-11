@@ -12,6 +12,7 @@ import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import com.jundapp.githubprofile.R
+import com.jundapp.githubprofile.activity.MainActivity
 import java.util.*
 
 class AlarmReceiver : BroadcastReceiver() {
@@ -70,11 +71,15 @@ class AlarmReceiver : BroadcastReceiver() {
 
     @Suppress("SameParameterValue")
     private fun showNotification(context: Context, title: String, message: String, notifId: Int) {
+        val intent = Intent(context, MainActivity::class.java)
+        val pendingIntent = PendingIntent.getActivity(context, 0, intent, 0)
+
         val notificationManagerCompat =
             context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         val alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
         val builder =
             NotificationCompat.Builder(context, CHANNEL_ID).setSmallIcon(R.drawable.app_icon)
+                .setContentIntent(pendingIntent)
                 .setContentTitle(title).setContentText(message)
                 .setColor(ContextCompat.getColor(context, android.R.color.transparent))
                 .setVibrate(longArrayOf(1000, 1000, 1000)).setSound(alarmSound).setAutoCancel(true)
